@@ -5,10 +5,9 @@ import { Image, Button  ,Menu } from 'semantic-ui-react'
 export default class MenuTodo extends Component {
   state = {}
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+	//handleItemClick = (console.log("hello"))
 
   render() {
-    const { activeItem } = this.state
 
     return (
       <Menu fluid borderless alignment='right'>
@@ -21,7 +20,7 @@ export default class MenuTodo extends Component {
 		
 		<Menu.Item
           name='editorials'
-          onClick={this.handleItemClick}
+          //onClick={this.handleItemClick}
         >
           Home
         </Menu.Item>
@@ -29,7 +28,7 @@ export default class MenuTodo extends Component {
 		<Menu.Item
           name='reviews'
 		  className={this.props.userLogged ? 'hidden' : ''}
-          onClick={this.handleItemClick}
+          //onClick={this.handleItemClick}
 	  >
    <Button content='login' secondary />
         </Menu.Item>

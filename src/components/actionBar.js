@@ -8,19 +8,22 @@ export default class InputBar extends React.Component {
 	constructor () {
 		super()
 		this.state =  {
-			search : false
+			searchingTerm : '',
+			actionSearch : false
 		}
 		this.toggleFunction = this.toggleFunction.bind(this);  
 	}
 
 	
 	toggleFunction () {
-		this.setState(() => ({search :  !this.state.search}))
+		this.setState(() => ({actionSearch :  !this.state.actionSearch}))
+		this.props.handleChangeInputFunction(this.state.actionSearch)
 	}
+	
 
-	filterList (e) {
-		console.log('filtering');
-		console.log(e.target.value );
+	filterList = (e) => {
+		let searchingTerm = e.target.value 
+		this.props.filtering(searchingTerm)	
 	}
 	
 	
@@ -34,16 +37,16 @@ export default class InputBar extends React.Component {
 			<div>
 				<Button 
 					onClick={this.toggleFunction}
-					icon={this.state.search ? 
-						'more' : 
+					icon={this.state.actionSearch ? 
+						'plus' : 
 						'filter' 
 					} 
 				/>
 				<Input 
-					onKeyPress={ this.state.search ? this.addList : this.filterList  }
-					placeholder={this.state.search ? 
-						'search for todos' : 
-						'add a new todo' 
+					onChange={ this.state.actionSearch ? this.addList : this.filterList  }
+					placeholder={this.state.actionSearch ? 
+						'add a new todo' :
+						'search for todos' 
 				} />
 
 			</div>
